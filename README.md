@@ -1,9 +1,15 @@
-# forward
+# forward-props
 Forward a list of properties to providers for an object on the fly (late-binding). The main usage is to have an object that provides an interface to its internal object and lets them handle the details of each of the methods. This is really useful when you want an object to behave like very disparate objects, yet don't want to mix those into one object with mixins or inheritance.
 
 
+### Install
+```sh
+$ npm install forward-props
+```
+
 ### Usage
 ```js
+var forward = require( 'forward-props' );
 
 // calculator interface
 var calc = Object.create( null );

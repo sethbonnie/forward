@@ -1,5 +1,5 @@
 var assert = require( 'assert' );
-var forward = require( './forward' );
+var forward = require( './index' );
 
 describe( 'forward( receiver, methods, provider )', function() {
   var calc;
