@@ -1,0 +1,9 @@
+{
+  "name": "forward",
+  "scripts": {
+    "test": "mocha test.js"
+  },
+  "devDependencies": {
+    "mocha": "^2.2.5"
+  }
+}
