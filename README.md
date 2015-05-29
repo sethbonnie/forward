@@ -14,7 +14,7 @@ var forward = require( 'forward-props' );
 // calculator interface
 var calc = Object.create( null );
 
-// internal addition module
+// private addition module
 var _addition = {
   add: function(a,b) { return a + b },
   sum: function( _args ) {
@@ -23,7 +23,7 @@ var _addition = {
   }
 };
 
-// internal multiplication module
+// private multiplication module
 var _multiplication = {
   multiply: function( a, b ) { return a * b },
   product: function( _args ) {
