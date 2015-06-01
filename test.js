@@ -39,16 +39,38 @@ describe( 'forward( receiver, methods, provider )', function() {
       assert.equal( calc.sum( 1,2,3,4,5 ), 15 );
     });
 
-    it( 'transforms properties into dynamic methods', function() {
-      assert.strictEqual( calc.length, undefined );
+    it( 'defers calls until calltime', function() {
+      // This means that we can dynamically switch out implementations
+      var Bob = {
+        mouth: {
+          sayHi: function() { return 'Howdy'; }
+        }
+      };
 
-      forward( calc, ['length'], '_counter' );
+      var anotherMouth = {
+        sayHi: function() { return 'Hello there!'; }
+      };
 
-      assert.strictEqual( calc.length(), 0 );
-      calc._counter.push( 2 );
-      assert.strictEqual( calc.length(), 1 );
+      forward( Bob, ['sayHi'], 'mouth' );
+      assert.equal( Bob.sayHi(), 'Howdy' );
+
+      // Switch mouths
+      Bob.mouth = anotherMouth;
+      assert.equal( Bob.sayHi(), 'Hello there!' );
     });
   });
+
+  it( 'transforms properties into dynamic methods', function() {
+    assert.strictEqual( calc.length, undefined );
+
+    forward( calc, ['length'], '_counter' );
+
+    assert.strictEqual( calc.length(), 0 );
+    calc._counter.push( 2 );
+    assert.strictEqual( calc.length(), 1 );
+  });
+
+  it( 'throws when properties don\'t exist' );
 
   describe( 'when given an object as a provider', function() {
 
